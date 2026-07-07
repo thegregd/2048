@@ -1,0 +1,179 @@
+openapi: 3.1.2
+
+info:
+  title: HTTP description of 2048 game.
+  version: 0.0.1
+
+servers:
+  - url: 'https://{baseURL}:{port}'
+    description: Game engine URL
+    variables:
+      baseURL:
+        default: localhost
+      port:
+        default: '8080'
+      version:
+        default: v1
+
+paths:
+  /game/start:
+    post:
+      tags:
+        - Game
+      summary: Starts a game
+      description: Returns a new board with 2 random tiles
+      operationId: startGame
+      responses:
+        '200':
+          description: Successfully generated a new board
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+
+
+  /game/move/{direction}:
+    post:
+      tags:
+        - Game
+      summary: Moves tiles up
+      description: Returns a board after processing the up movement
+      operationId: moveTiles
+      parameters:
+        - name: direction
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Direction'
+      responses:
+        '200':
+          description: Successfully generated a new board
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+
+  /game/hint:
+    get:
+      tags:
+        - Game
+      summary: Gets suggestion from AI
+      description: Returns suggestion about best next move
+      operationId: getHint
+      responses:
+        '200':
+          description: Successfully retrieved suggestion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameError'
+
+components:
+  schemas:
+
+    Game:
+      type: object
+      required:
+        - board
+        - status
+        - score
+
+      properties:
+        board:
+          type: array
+          items:
+            type: array
+            itmes:
+              type: integer
+              format: int32
+
+        status:
+          $ref: '#/components/schemas/Status'
+
+        score:
+          type: integer
+          format: int32
+
+        hint:
+          type: string
+
+    Status:
+      type: object
+
+      properties:
+        message:
+          type: string
+
+    Direction:
+      type: string
+      enum:
+        - up
+        - right
+        - down
+        - left
+
+    GameError:
+      type: object
+      description: Generic error
+
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: String
+          description: Detailed error message

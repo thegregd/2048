@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: 2048
+  ai:
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+  messages:
+    basename: i18n.messages

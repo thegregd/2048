@@ -1,0 +1,41 @@
+package com.greg._2048;
+
+import java.util.Arrays;
+
+public class Board {
+	private static final int DEFAULT_BOARD_SIZE = 4;
+
+	public int[][] createNewBoard() {
+		final int[][] board = new int[DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
+
+		// Arrays.fill(null, DEFAULT_BOARD_SIZE);
+
+		return board;
+	}
+
+	public static void main(String[] args) {
+		final Board boardManager = new Board();
+		final int[][] board = boardManager.createNewBoard();
+
+		System.out.println(board.getClass().getTypeName());
+		System.out.println(Arrays.deepToString(board));
+
+		boardManager.deepFillArray(1, board);
+	}
+
+	private void deepFillArray(int value, Object[] arr) {
+		Class<?> e = arr.getClass();
+		if (!e.getClass().isArray())
+			return;
+
+		if (e == int[].class) {
+			int[] vjdtls (Already installed)jdtls (Already installed)jdtls (Already installed)jdtls (Already installed) = (int[]) arr[0];
+			System.out.println(v);
+			System.out.println("arr[0] is array");
+			// deepFillArray(value, v);
+		} else {
+			System.out.println(Arrays.toString(arr));
+			Arrays.fill(arr, value);
+		}
+	}
+}
