@@ -12,9 +12,9 @@
 2. Import the project as a new project in IntelliJ
 3. Navigate to `Application.java` and run the main method by clicking the top green arrow on the left side of the editor.
 4. Set the environment variable `ANTHROPIC_API_KEY` with the value of your Anthropic Api Key.
-4.1  Go to `Run/Debug Configuration`.
-4.2  Select `Spring Boot` -> `Application`.
-4.3  Add the variable `ANTHROPIC_API_KEY` with your value to the `Environment variables:` section.
+    1. Go to `Run/Debug Configuration`.
+    2. Select `Spring Boot` -> `Application`.
+    3. Add the variable `ANTHROPIC_API_KEY` with your value to the `Environment variables:` section.
 
 ### Running the Application using Gradle
 
