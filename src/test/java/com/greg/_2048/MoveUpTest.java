@@ -2,7 +2,7 @@ package com.greg._2048;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.greg._2048.service.MoveUp;
+import com.greg._2048.command.MoveUp;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +56,7 @@ public class MoveUpTest {
 
     @Test
     @DisplayName("Should move multiple tiles with consecutive zeros to the top")
-    void shouldMoveTilesWithZeorsToTheTop() {
+    void shouldMoveTilesWithZerosToTheTop() {
         // given
         int[][] board = {
                 {0, 2, 3, 4},

@@ -1,6 +1,6 @@
 package com.greg._2048;
 
-import com.greg._2048.service.MoveDown;
+import com.greg._2048.command.MoveDown;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -63,7 +63,7 @@ class MoveDownTest {
 
     @Test
     @DisplayName("Should move multiple tiles with consecutive zeros to the bottom")
-    void shouldMoveTilesWithZeorsToTheBottom() {
+    void shouldMoveTilesWithZerosToTheBottom() {
         // given
         int[][] board = {
                 {0, 0, 3, 4},
@@ -106,9 +106,9 @@ class MoveDownTest {
     }
 
     private void prettyArrayPrint(int[][] arr) {
-        for (int row = 0; row < arr.length; row++) {
-            for (int col = 0; col < arr[row].length; col++) {
-                System.out.printf("%5d", arr[row][col]);
+        for (final int[] ints : arr) {
+            for (final int anInt : ints) {
+                System.out.printf("%5d", anInt);
             }
             System.out.println();
         }

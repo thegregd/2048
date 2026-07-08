@@ -1,6 +1,8 @@
 package com.greg._2048.service;
 
-import com.greg._2048.service.Status.Referee;
+import com.greg._2048.model.Status;
+import com.greg._2048.model.Status.Referee;
+import com.greg._2048.model.Win;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -210,7 +210,7 @@
 
                             <schemaMappings>
                                 <schemaMapping>Game=com.greg._2048.model.Game</schemaMapping>
-                                <schemaMapping>Status=com.greg._2048.service.Status</schemaMapping>
+                                <schemaMapping>Status=com.greg._2048.model.Status</schemaMapping>
                             </schemaMappings>
                         </configuration>
                     </execution>

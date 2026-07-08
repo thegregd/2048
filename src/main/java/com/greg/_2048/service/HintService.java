@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 @Component
 @RequiredArgsConstructor
-public class Hinter {
+public class HintService {
     private final ChatClient chatClient;
     
     @Qualifier("hint")

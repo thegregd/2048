@@ -1,18 +1,13 @@
 package com.greg._2048;
 
 import com.greg._2048.model.Game;
-import com.greg._2048.service.InProgress;
-import org.assertj.core.api.Assertions;
+import com.greg._2048.model.InProgress;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.json.JsonCompareMode;
 import org.springframework.test.web.servlet.client.RestTestClient;
-import tools.jackson.databind.ObjectMapper;
-
-import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,9 +17,6 @@ class ApplicationTests {
     
     @Autowired
     private RestTestClient restTestClient;
-    
-    @Autowired
-    private ObjectMapper objectMapper;
     
     @Test
     void contextLoads() {

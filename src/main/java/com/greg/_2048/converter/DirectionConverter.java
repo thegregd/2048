@@ -1,11 +1,11 @@
 package com.greg._2048.converter;
 
 import com.greg._2048.model.Direction;
-import com.greg._2048.service.Move;
-import com.greg._2048.service.MoveDown;
-import com.greg._2048.service.MoveLeft;
-import com.greg._2048.service.MoveRight;
-import com.greg._2048.service.MoveUp;
+import com.greg._2048.command.Move;
+import com.greg._2048.command.MoveDown;
+import com.greg._2048.command.MoveLeft;
+import com.greg._2048.command.MoveRight;
+import com.greg._2048.command.MoveUp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

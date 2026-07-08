@@ -1,4 +1,4 @@
-package com.greg._2048.service;
+package com.greg._2048.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.context.MessageSource;

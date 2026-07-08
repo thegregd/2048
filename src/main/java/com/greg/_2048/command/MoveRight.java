@@ -1,4 +1,4 @@
-package com.greg._2048.service;
+package com.greg._2048.command;
 
 import org.springframework.stereotype.Component;
 
@@ -10,9 +10,7 @@ public record MoveRight() implements Move<int[][]> {
         int score = 0;
         
         for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                curCol[col] = board[row][col];
-            }
+            System.arraycopy(board[row], 0, curCol, 0, board[row].length);
             
             shiftArrayDownRight(curCol, 0);
             evalBoardHoriz(board, row, curCol);

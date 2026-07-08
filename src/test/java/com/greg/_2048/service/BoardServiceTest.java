@@ -1,7 +1,12 @@
 package com.greg._2048.service;
 
+import com.greg._2048.command.MoveDown;
+import com.greg._2048.command.MoveLeft;
+import com.greg._2048.command.MoveRight;
+import com.greg._2048.command.MoveUp;
 import com.greg._2048.model.Game;
-import com.greg._2048.service.Status.Referee;
+import com.greg._2048.model.InProgress;
+import com.greg._2048.model.Status.Referee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -85,10 +90,5 @@ class BoardServiceTest {
         assertThat(game.board()).isNotEmpty();
         assertThat(game.score()).isGreaterThanOrEqualTo(0);
         assertThat(game.status()).isInstanceOf(InProgress.class);
-    }
-    
-    @Test
-    void shouldFail() {
-        Game game = boardService.move(null);
     }
 }

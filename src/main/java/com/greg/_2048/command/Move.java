@@ -1,4 +1,4 @@
-package com.greg._2048.service;
+package com.greg._2048.command;
 
 //@FunctionalInterface
 public sealed interface Move<I> permits MoveUp, MoveRight, MoveDown, MoveLeft {
@@ -11,9 +11,7 @@ public sealed interface Move<I> permits MoveUp, MoveRight, MoveDown, MoveLeft {
     }
     
     default void evalBoardHoriz(final int[][] board, final int row, final int[] curCol) {
-        for (int col = 0; col < board[row].length; col++) {
-            board[row][col] = curCol[col];
-        }
+        System.arraycopy(curCol, 0, board[row], 0, board[row].length);
     }
     
     default int sumSameTilesUpLeft(final int[] arr) {

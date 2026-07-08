@@ -1,7 +1,7 @@
 package com.greg._2048;
 
 import com.greg._2048.model.Hint;
-import com.greg._2048.service.Hinter;
+import com.greg._2048.service.HintService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,9 +15,9 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class HinterTest {
+class HintServiceTest {
     
-    private Hinter hinter;
+    private HintService hintService;
     
     @Mock
     private ChatClient chatClient;
@@ -30,7 +30,7 @@ class HinterTest {
     
     @BeforeEach
     void setUp() {
-        hinter = new Hinter(chatClient, new StringBuffer());
+        hintService = new HintService(chatClient, new StringBuffer());
     }
     
     @Test
@@ -50,7 +50,7 @@ class HinterTest {
         given(callResponseSpec.entity(Hint.class)).willReturn(new Hint(expected));
         
         // when
-        String actual = hinter.getHint(board);
+        String actual = hintService.getHint(board);
         
         // then
         assertThat(actual).isEqualTo(expected);

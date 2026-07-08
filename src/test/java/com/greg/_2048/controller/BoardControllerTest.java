@@ -1,12 +1,12 @@
 package com.greg._2048.controller;
 
+import com.greg._2048.command.Move;
+import com.greg._2048.command.MoveUp;
 import com.greg._2048.converter.DirectionConverter;
 import com.greg._2048.model.Direction;
 import com.greg._2048.model.Game;
+import com.greg._2048.model.InProgress;
 import com.greg._2048.service.BoardService;
-import com.greg._2048.service.InProgress;
-import com.greg._2048.service.Move;
-import com.greg._2048.service.MoveUp;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,6 @@ import tools.jackson.databind.ObjectMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest(BoardController.class)
 class BoardControllerTest {
@@ -39,7 +37,7 @@ class BoardControllerTest {
     
     @Test
     @DisplayName("Should return a new Game as JSON")
-    void shouldReturnNewGameAsJson() throws Exception {
+    void shouldReturnNewGameAsJson() {
         // given
         int[][] newBoard = {
                 {0, 0, 0, 0},
@@ -63,7 +61,7 @@ class BoardControllerTest {
     
     @Test
     @DisplayName("Should return a board as JSON after moving tiles up")
-    void shouldReturnMovedUpBoardAsJson() throws Exception {
+    void shouldReturnMovedUpBoardAsJson() {
         // given
         int[][] board = {
                 {0, 0, 0, 0},

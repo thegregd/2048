@@ -1,6 +1,6 @@
 package com.greg._2048;
 
-import com.greg._2048.service.MoveLeft;
+import com.greg._2048.command.MoveLeft;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

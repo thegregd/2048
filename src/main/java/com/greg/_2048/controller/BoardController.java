@@ -5,7 +5,7 @@ import com.greg._2048.converter.DirectionConverter;
 import com.greg._2048.model.Direction;
 import com.greg._2048.model.Game;
 import com.greg._2048.service.BoardService;
-import com.greg._2048.service.Move;
+import com.greg._2048.command.Move;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

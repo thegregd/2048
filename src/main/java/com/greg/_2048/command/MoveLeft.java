@@ -1,28 +1,28 @@
-package com.greg._2048.service;
+package com.greg._2048.command;
 
 import org.springframework.stereotype.Component;
 
-@Component("up")
-public record MoveUp() implements Move<int[][]> {
+@Component("left")
+public record MoveLeft() implements Move<int[][]> {
     @Override
     public int execute(int[][] board) {
         int[] curCol = new int[4];
         int score = 0;
         
         for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                curCol[col] = board[col][row];
-            }
+            System.arraycopy(board[row], 0, curCol, 0, board[row].length);
+            
             shiftArrayUpLeft(curCol, 0);
-            evalBoardVert(board, row, curCol);
+            evalBoardHoriz(board, row, curCol);
             
             score += sumSameTilesUpLeft(curCol);
-            evalBoardVert(board, row, curCol);
+            evalBoardHoriz(board, row, curCol);
             
             shiftArrayUpLeft(curCol, 0);
-            evalBoardVert(board, row, curCol);
+            evalBoardHoriz(board, row, curCol);
         }
         
         return score;
     }
+    
 }

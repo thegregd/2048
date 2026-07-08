@@ -1,14 +1,18 @@
 package com.greg._2048.service;
 
+import com.greg._2048.command.Move;
 import com.greg._2048.model.Game;
+import com.greg._2048.model.InProgress;
 import com.greg._2048.model.Pair;
-import com.greg._2048.service.Status.Referee;
+import com.greg._2048.model.Status;
+import com.greg._2048.model.Status.Referee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +25,7 @@ public class BoardService {
     
     private final MessageSource messageSource;
     
-    private final Hinter hinter;
+    private final HintService hintService;
     
     private final List<int[][]> previousMoves;
     
@@ -46,7 +50,7 @@ public class BoardService {
         return new Game(board, new InProgress(newGameMessage), score, "");
     }
     
-    public Game move(final Move direction) {
+    public Game move(final Move<int[][]> direction) {
         hinted = false;
         final int[][] newBoard = copyArray(board);
         
@@ -66,9 +70,9 @@ public class BoardService {
     public Game getHint() {
         if (!hinted) {
             hinted = true;
-            return new Game(board, new Status.Referee(messageSource).check(board), score, hinter.getHint(board));
+            return new Game(board, new Status.Referee(messageSource).check(board), score, hintService.getHint(board));
         } else {
-            return new Game(board, new Status.Referee(messageSource).check(board), score, hinter.getLastHint());
+            return new Game(board, new Status.Referee(messageSource).check(board), score, hintService.getLastHint());
         }
     }
     
@@ -85,10 +89,8 @@ public class BoardService {
     }
     
     private void zeroTheBoard(final int[][] board, final int value) {
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                board[row][col] = value;
-            }
+        for (final int[] ints : board) {
+            Arrays.fill(ints, value);
         }
     }
     
@@ -98,16 +100,6 @@ public class BoardService {
         int tileIdx = rand.nextInt(5);
         
         return tiles[tileIdx];
-    }
-    
-    private void prettyArrayPrint(final int[][] arr) {
-        for (int row = 0; row < arr.length; row++) {
-            for (int col = 0; col < arr[row].length; col++) {
-                System.out.printf("%5d", arr[row][col]);
-            }
-            System.out.println();
-        }
-        System.out.println();
     }
     
     private ArrayList<Pair> findEmptyTiles(final int[][] board) {
@@ -127,9 +119,7 @@ public class BoardService {
         final int[][] newArr = new int[old.length][old[0].length];
         
         for (int row = 0; row < old.length; row++) {
-            for (int col = 0; col < old[row].length; col++) {
-                newArr[row][col] = old[row][col];
-            }
+            System.arraycopy(old[row], 0, newArr[row], 0, old[row].length);
         }
         
         return newArr;

@@ -1,4 +1,4 @@
-package com.greg._2048.service;
+package com.greg._2048.command;
 
 import org.springframework.stereotype.Component;
 
