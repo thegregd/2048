@@ -19,9 +19,9 @@ public sealed interface Status permits Win, Lose, InProgress {
         private final static int WINNIG_VALUE = 2048;
         private final static int MOVE_POSSIBLE = 0;
         
-        private final String WIN_MESSAGE;// = "You won! 2048 reached";
-        private final String LOSE_MESSAGE;// = "No more moves.";
-        private final String IN_PROGRESS_MESSAGE;// = "Carry on.";
+        private final String WIN_MESSAGE;
+        private final String LOSE_MESSAGE;
+        private final String IN_PROGRESS_MESSAGE;
         
         public Referee(final MessageSource messageSource) {
             WIN_MESSAGE = messageSource.getMessage("game.won", null, LocaleContextHolder.getLocale());
